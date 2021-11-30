@@ -48,7 +48,9 @@ spring:
         multiTenancy: SCHEMA
         tenant_identifier_resolver: cloud.tenant.MultiTenantIdentifierResolver
         multi_tenant_connection_provider: cloud.tenant.MultiTenantConnectionProviderImpl
-
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
 logging:
   file:
     path: /home/yinlei/logs/
