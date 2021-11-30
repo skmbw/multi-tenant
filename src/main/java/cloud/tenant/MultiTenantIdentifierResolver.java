@@ -1,6 +1,8 @@
 package cloud.tenant;
 
 import cloud.service.StudentService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,8 @@ import java.util.Set;
 @Component
 public class MultiTenantIdentifierResolver implements CurrentTenantIdentifierResolver, Filter {
 
+    private static final Logger LOGGER = LogManager.getLogger(MultiTenantIdentifierResolver.class);
+
     private String tenantId = "Default"; // 需要一个默认的租户Id
 
     private Set<String> whiteList = new HashSet<>();
@@ -26,9 +30,19 @@ public class MultiTenantIdentifierResolver implements CurrentTenantIdentifierRes
     @Autowired
     private StudentService studentService;
 
+//    public MultiTenantIdentifierResolver() {
+//        WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
+//        ConfigurableApplicationContext configurableApplicationContext = CloudApplication.getContext();
+//        LOGGER.info(context != null ? "Get WebApplicationContext success." : "Get WebApplicationContext failure.");
+//    }
+
     // 获取tenantId的逻辑在这个方法里面写
     @Override
     public String resolveCurrentTenantIdentifier() {
+        this.tenantId = TenantIdHolder.getTenantId();
+        if (this.tenantId == null) {
+            this.tenantId = "Default";
+        }
         return tenantId;
     }
 
@@ -54,6 +68,7 @@ public class MultiTenantIdentifierResolver implements CurrentTenantIdentifierRes
             }
         }
         this.tenantId = tenantId;
+        TenantIdHolder.setTenantId(this.tenantId);
         chain.doFilter(request, response);
     }
 }
