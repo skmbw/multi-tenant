@@ -1,11 +1,16 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.0.M2'
+        springBootVersion = '2.6.0'
     }
     repositories {
-        // mavenCentral()
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url "https://repo.spring.io/milestone" }
+        maven{ url 'https://maven.aliyun.com/repository/public'}
+        maven{ url 'https://maven.aliyun.com/repository/central'}
+        maven{ url 'https://maven.aliyun.com/repository/google'}
+        maven{ url 'https://maven.aliyun.com/repository/gradle-plugin'}
+        maven{ url 'https://maven.aliyun.com/repository/spring'}
+        maven{ url 'https://maven.aliyun.com/repository/spring-plugin'}
+//        maven { url "https://repo.spring.io/snapshot" }
+//        maven { url "https://repo.spring.io/milestone" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -27,9 +32,14 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
-    maven { url "https://repo.spring.io/snapshot" }
-    maven { url "https://repo.spring.io/milestone" }
+    maven{ url 'https://maven.aliyun.com/repository/public'}
+    maven{ url 'https://maven.aliyun.com/repository/central'}
+    maven{ url 'https://maven.aliyun.com/repository/google'}
+    maven{ url 'https://maven.aliyun.com/repository/gradle-plugin'}
+    maven{ url 'https://maven.aliyun.com/repository/spring'}
+    maven{ url 'https://maven.aliyun.com/repository/spring-plugin'}
+//    maven { url "https://repo.spring.io/snapshot" }
+//    maven { url "https://repo.spring.io/milestone" }
 }
 
 
