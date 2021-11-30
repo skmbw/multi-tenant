@@ -1,0 +1,61 @@
+filter.path: /user/login,/user/register,/question/list,/question/detail/,/article/list,/article/detail/,/account/wealthList,/characters/powerList,/score/board,/category/query,/user/detail/,/answer/list,/comment/list,/favorite/list,/virtualItems/list,/video/list,/video/detail/,/video/upload,/video/add,/search/list,/love/add,/index.jsp,/employee/login,/special/list,/specialDetail/list,/reward/award,/reward/detail/,/documents/list,/documents/detail,/documents/query,/course/list,/course/query,/course/detail,/user/protocol,/classroom/talking,/orders/rank,/answer/rank
+disabled.account: admin,administrator,管理员,超级管理员,tianxun,天寻,yinlei,bizili,yinzhongtian,yinqianxun,尹雷,毕子利,尹中天,尹千寻
+ftp.ip: 192.168.1.104
+ftp.port: 22
+ftp.user: yinlei
+ftp.password: 0558bizili
+
+jwt:
+  token:
+    publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIhvaW0B5GzZafRH9TGqiroLl_q5a7z0gJnL8AO5gMeymrFGUV_jcEQ3BKkWZPXK6z-2E_dPBtiuvFBYRE9s5yUCAwEAAQ
+    privateKey: MIIBUwIBADANBgkqhkiG9w0BAQEFAASCAT0wggE5AgEAAkEAiG9pbQHkbNlp9Ef1MaqKuguX-rlrvPSAmcvwA7mAx7KasUZRX-NwRDcEqRZk9crrP7YT908G2K68UFhET2znJQIDAQABAkA4jEza9GzTvK0QpX537mJ_R-ze61k_QOvIUuGQ-aLpoX9N4S6BiPadVaNamjfgvSAlssFv6fPcmWkGhM4HPhUlAiEAvsxkVKY0Q47GHOz6AqqxrDG4tw_GjDpqEM9-tYMzaLMCIQC3DyqSXLTRjSYHon-27TEoVWj9ikhYx13FaYQjPAlsxwIgG-Ps1qLlCOsZ8qiBc1pYVn9-LORVdbIkRwjN0OK45RkCIHF6M1e7pFNqfjKpZyZMbvajy4uwFx0BqX1g5Yq6AtWtAiAdICUC3pNmi68Qu97msTrNzLn7JvYmNNh6TPLxlv_Ujg
+
+xue:
+  uploadPrefix: /var/images/
+  imagesPrefix: http://192.168.1.104:8300/
+  ffmpeg: /usr/bin/
+file.upload.prefix: /var/images/
+
+server:
+  port: 8665
+spring:
+  application:
+    name: tenant
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+      max-request-size: 20MB
+  session:
+    store-type: none
+  redis:
+    host: 192.168.1.104
+    port: 6379
+  datasource:
+    url: jdbc:mysql://localhost:3306/tenant_tx?allowMultiQueries=true&autoReconnect=true&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      max-lifetime: 1765000
+      username: root
+      password: 0558YinLe!341676
+      transaction-isolation: TRANSACTION_REPEATABLE_READ
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        multiTenancy: SCHEMA
+        tenant_identifier_resolver: cloud.tenant.MultiTenantIdentifierResolver
+        multi_tenant_connection_provider: cloud.tenant.MultiTenantConnectionProviderImpl
+
+logging:
+  file:
+    path: /home/yinlei/logs/
+    name: multi-tenant.log
+  level:
+    root: info
+    web: debug
+    cloud: debug
+    org.mybatis: debug
+    com.vteba: info
