@@ -2,6 +2,7 @@ package cloud.controller;
 
 import cloud.config.ConstId;
 import cloud.dao.TenantInfoDao;
+import cloud.entity.Student;
 import cloud.entity.TenantInfo;
 import cloud.service.StudentService;
 import cloud.tenant.TenantDataSourceProvider;
@@ -36,6 +37,7 @@ public class HelloController {
     @RequestMapping("login")
     public Result login(@Param("t") String t) {
         ConstId.Id = t;
+        List<Student> studentList = studentService.findAll();
         return ResultGenerator.genSuccessResult();
     }
 
