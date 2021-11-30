@@ -1,7 +1,7 @@
 package cloud.tenant;
 
 import cloud.entity.TenantInfo;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
